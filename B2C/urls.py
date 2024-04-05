@@ -1,6 +1,3 @@
-# from django.contrib import admin
-# from django.urls import path,include
-
 from django.urls import path
 from Customer.views import hello_world
 
