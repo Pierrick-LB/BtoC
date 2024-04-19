@@ -1,7 +1,8 @@
 from django.urls import path
-from Customer.views import hello_world
-
+from .views import homePage, contactPage
 
 urlpatterns = [
-    path('hello/', hello_world, name='hello_world'),
+    path("admin/", admin.site.urls),
+    path("", homePage, name="homePage"),
+    path("contact/", contactPage, name="contactPage"),
 ]
