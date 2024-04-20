@@ -17,9 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import homePage, contactPage
+from Products.views import shopDetails
+
+app_name = "B2C"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", homePage, name="homePage"),
     path("contact/", contactPage, name="contactPage"),
+    path("shopDetails/",shopDetails,name="shopDetails")
 ]
