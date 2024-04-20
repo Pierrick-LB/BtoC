@@ -8,3 +8,6 @@ def homePage(request):
 
 def contactPage(request):
     return render(request, "B2C/contact.html", locals())
+
+def shopPage(request):
+    return render(request, "Products/shop.html", locals())
