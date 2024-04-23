@@ -20,7 +20,7 @@ from .views import shopDetails, shopPage
 
 
 urlpatterns = [
-    path("shopDetails",shopDetails,name="shopDetails"),
-    path("shop", shopPage, name="shopPage")
+    path("shopDetails/",shopDetails,name="shopDetails"),
+    path("shop/", shopPage, name="shopPage")
 ]
 
