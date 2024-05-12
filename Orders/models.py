@@ -1,5 +1,12 @@
 from django.db import models
 
+
+
+#TODO : define order table ===> user table ( foreign key ) @Hawa , @Maimouna, @Pierrick
+#TODO : define order table ===> articles table ( foreign key ) @Hawa , @Maimouna, @Pierrick
+#TODO : define order table ===> payment table ( foreign key ) @Hawa , @Maimouna, @Pierrick
+#TODO : refactor tables fields @Hawa , @Maimouna, @Pierrick
+
 class Order(models.Model):
     STATUT_CHOICES = (
         ('pending', 'Pending'),
@@ -7,7 +14,7 @@ class Order(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancel'),
     )
-    articles_commandes = models.TextField()
+    products = models.ManyToManyField('Products.Product')
     adresse_livraison = models.CharField(max_length=100)
     date_commande = models.DateField()
     statut_commande = models.CharField(max_length=50, choices=STATUT_CHOICES)

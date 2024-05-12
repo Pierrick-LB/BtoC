@@ -1,12 +1,18 @@
 from django.db import models
-#todo partenaire hérite de user
+
+
+#TODO : use table user here to refactor table entries
+#TODO : use english for table names and fields
+
+
 class Partenaire(models.Model):
-    nom_societe = models.CharField(max_length=100)
-    nature_activite = models.CharField(max_length=100)
-    adresse = models.CharField(max_length=100)
-    email = models.EmailField()
-    numero_telephone = models.CharField(max_length=20)
-    personne_contact = models.CharField(max_length=100)
-    statut_partenariat = models.CharField(max_length=100)
-    date_debut_partenariat = models.DateField()
-    date_fin_partenariat = models.DateField()
+    name = models.CharField(max_length=100)
+    user = models.ForeignKey('Login.User', on_delete=models.CASCADE)  #HERITAGE
+    activity = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    contacts = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+    started_date = models.DateField()
+    ended_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
