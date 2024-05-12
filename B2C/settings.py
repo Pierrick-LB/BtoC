@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     "Login",
     "Seller",
     "Messaging",
-    "Partners"
+    "Partners",
+    "Comments",
+    "Orders"
 ]
 
 MIDDLEWARE = [

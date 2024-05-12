@@ -1,3 +1,3 @@
 from django.db import models
 
-# todo define user table
+# Create your models here.
