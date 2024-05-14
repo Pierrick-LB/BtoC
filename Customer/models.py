@@ -1,5 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class Customer(models.Model):
+    user = models.ForeignKey('Login.User', on_delete=models.CASCADE)  #HERITAGE
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-#TODO : define customer table ===> user tbale ( foreign key ) @Hawa , @Maimouna, @Pierrick
+
+
+
+#TODO : ADD payment table and link it to customer table

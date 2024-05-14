@@ -4,11 +4,14 @@ from django.template.defaultfilters import slugify
 class Comment(models.Model):
     name = models.CharField(max_length=100)
     content = models.TextField()
-    added = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(null=False, unique=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return slugify(self.name)
@@ -21,8 +24,8 @@ class Post(models.Model):
     banner = models.ImageField(upload_to="posts/")
     comments = models.ManyToManyField(Comment, blank=True)
     display = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now=True)
-    updated = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     
     def slug(self):
         return slugify(self.title)
