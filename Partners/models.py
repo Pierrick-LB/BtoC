@@ -1,13 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-#TODO : use table user here to refactor table entries
-#TODO : use english for table names and fields
-
-
-class Partenaire(models.Model):
+class Partner(models.Model):
     name = models.CharField(max_length=100)
-    user = models.ForeignKey('Login.User', on_delete=models.CASCADE)  #HERITAGE
+    user = models.ForeignKey('Login.User', on_delete=models.CASCADE)
     activity = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     contacts = models.CharField(max_length=100)
