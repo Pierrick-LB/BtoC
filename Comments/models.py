@@ -1,12 +1,8 @@
 from django.db import models
-#from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-#TODO : define comment table here @Hawa , @Maimouna, @Pierrick
-#TODO : refactor comment table to use foreign key to user table @Hawa , @Maimouna, @Pierrick
-#TODO : define articles tables @Hawa , @Maimouna, @Pierrick
 
 class Comment(models.Model):
-    first_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     content = models.TextField()
     added = models.DateField()
 
@@ -19,7 +15,6 @@ class Category(models.Model):
     
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    #author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     slug = models.SlugField(max_length=255, unique=True)
