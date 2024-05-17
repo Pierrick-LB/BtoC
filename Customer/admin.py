@@ -1,6 +1,12 @@
 from django.contrib import admin
+from .models import Customer, Payment
 
-# Register your models here.
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    display = ('id', 'user', 'created_at')
 
 
-#TODO : Register customer table here in order to display it on the panel admin @Hawa , @Maimouna, @Pierrick
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'payment_method', 'amount', 'created_at')

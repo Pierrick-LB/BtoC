@@ -1,7 +1,6 @@
 #TODO : define user table here @Hawa , @Maimouna, @Pierrick
 #TODO : refactor django user table to use authentification by phone number @Fallou
 
-<<<<<<< HEAD
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
@@ -52,7 +51,7 @@ class UserManager(BaseUserManager):
         return self.create_user(phone, password, **extra_fields)
 
 class User(AbstractBaseUser, CustomPermissionsMixin):
-    phone = models.CharField(unique=True)
+    phone = models.CharField(unique=True, max_length=20)
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
@@ -71,16 +70,3 @@ class User(AbstractBaseUser, CustomPermissionsMixin):
 
     
 
-=======
-
-class User(models.Model):
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.email
->>>>>>> 2440fcdd9ed85233e58e0476f77313bb413414ac

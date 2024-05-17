@@ -5,13 +5,13 @@ from .models import *
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'first_name', 'content', 'added')
+    list_display = ('id', 'name', 'content', 'created_at')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['id','name']
+    list_display = ['id','name', 'created_at']
     prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title','category','created', 'updated')
+    list_display = ('id', 'title','category','created_at')
