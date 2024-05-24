@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
+
 class Comment(models.Model):
     name = models.CharField(max_length=100)
     content = models.TextField()
