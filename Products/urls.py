@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.urls import path
 from .views import shopDetails, shopPage, cartPage, checkoutPage, notFound
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ProductViewSet
 
-
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     path("shopDetails/",shopDetails,name="shopDetails"),
@@ -25,5 +29,9 @@ urlpatterns = [
     path("cart/", cartPage, name="cartPage"),
     path("checkout/", checkoutPage, name="checkoutPage"),
     path("404/", notFound, name="notFound"),
+    path('api/', include(router.urls)),
 ]
 
+
+
+# path("api/products-list/", ProductList.as_view(), name="product-list"),

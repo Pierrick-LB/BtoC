@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "Customer",
     "Products",
     "Login",
@@ -92,9 +93,22 @@ WSGI_APPLICATION = "B2C.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'mydatabaseuser',
-        'PASSWORD': 'mypassword',
+        'NAME': 'B2C_test',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'xxxx',
+        'USER': 'xxxxx',
+        'PASSWORD': 'xxxxx',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -135,7 +149,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'static/img'
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'

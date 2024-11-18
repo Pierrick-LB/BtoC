@@ -8,3 +8,8 @@ def contactPage(request):
 
 def shopPage(request):
     return render(request, "Products/shop.html", locals())
+
+def crudtest(request):
+    return render(request, "B2C/CRUD_test.html", locals())    
+
+    

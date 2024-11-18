@@ -16,13 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import homePage, contactPage
+from .views import homePage, contactPage , crudtest
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", homePage, name="homePage"),
     path("contact/", contactPage, name="contactPage"),
-    path("products/",include("Products.urls"))
+    path("products/",include("Products.urls")),
+    path("test/", crudtest, name="crudtest"),
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

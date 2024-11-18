@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<section>
+    <div class="container mb-4">
+		<h1 class="mt-4">Test API : Gestion des Produits</h1>
+
+		<div class="container mt-4">
+			<h2>Créer un Produit</h2>
+			<div class="container form-group mt-4">
+				<div class="row mt-2">
+					
+					<div class="col-md-6">
+						<label for="create-name">Nom du produit</label>
+						<input class="form-control" type="text" id="create-name" placeholder="Nom du produit" required>
+					</div>
+					<div class="col-md-6"><label for="create-price">Prix du produit</label><input class="form-control" type="number" 
+                        id="create-price" placeholder="Prix du produit" required></div>
+				</div>
+				<div class="row mt-2">		
+					<div class="col-md-6"><label for="create-price">Description du produit</label><textarea class="form-control" 
+                        id="create-description" placeholder="Description du produit" required></textarea>
+					</div>
+					<div class="col-md-6">
+						<label for="create-category">Sélectionnez une catégorie</label>
+						<select id="create-category" class="form-control" required>
+						<option value="">--catégorie--</option>
+						<option value="fruit">Fruit</option>
+					</select></div>
+				</div>
+				<div class="row mt-2">
+				<div class="col-md-6"><label for="create-stock">Stock</label><input class="form-control" type="number" id="create-stock" placeholder="Stock" required></div>
+				<div class="col-md-6"><label for="create-image">Photo</label><input class="form-control" type="file" id="create-image" required></div>
+				</div>
+				<div class="row mt-2">
+				 <div class="col-md-6"><label for="create-seller">Id vendeur</label><input class="form-control" type="text" 
+                    id="create-seller" placeholder="Nom du vendeur" required value="1"></div>
+				</div>
+				<div class="row mt-4 btn-group">
+
+				<div class="col"><button onclick="createProduct()" class="btn btn-primary">Créer</button></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container mt-4">
+			<h2>Modifier un Produit</h2>
+			<div class="container form-group mt-4">
+				<div class="row mt-2">
+					<div class="col-md-6">
+					<label for="update-id">ID du produit</label>
+					<input class="form-control"  type="text" id="update-id" placeholder="ID du produit" required></div>
+					<div class="col-md-6">
+					<label for="update-name">Nouveau nom du produit</label>
+					<input class="form-control"  type="text" id="update-name" placeholder="Nouveau nom du produit" required></div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-md-6">
+					<label for="update-price">Nouveau prix du produit</label>
+					<input class="form-control"  type="number" id="update-price" placeholder="Nouveau prix du produit" required></div>
+					<div class="col-md-6">
+					<label for="update-description">Nouvelle description du produit</label>
+					<textarea class="form-control"  id="update-description" placeholder="Nouvelle description du produit" required></textarea></div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-md-6">
+					<label for="update-category">Sélectionnez une catégorie</label>
+					<select class="form-control"  id="update-category" required>
+						<option value="">--catégorie--</option>
+						<option value="fruit">Fruit</option>
+					</select></div>
+					<div class="col-md-6">
+					<label for="update-stock">Nouveau stock</label>
+					<input class="form-control"  type="number" id="update-stock" placeholder="Nouveau stock" required></div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-md-6">
+					<label for="update-image">Nouvelle photo</label>
+					<input class="form-control" type="file" id="update-image"> <!-- Image optionnelle pour la mise à jour --></div>
+				</div>
+				
+				<div class="row mt-4 btn-group">
+					<div class="col"><button onclick="updateProduct()" class="btn btn-primary">Modifier</button></div>
+				</div>
+			</div>
+
+		</div>
+    
+
+
+		<div class="container mt-4">
+			<h2>Supprimer un Produit</h2>
+			<div class="container form-group mt-4">
+				<div class="row mt-2">
+					<div class="col-12">
+					<label for="delete-id">ID du produit à supprimer</label>
+					<input class="form-control" type="text" id="delete-id" placeholder="ID du produit à supprimer" required>
+					</div>
+				</div>
+				<div class="row mt-4 btn-group">
+					<div class="col"><button onclick="deleteProduct()" class="btn btn-primary">Supprimer</button></div>
+				</div>
+			</div>
+		</div>
+	
+	
+	</div>
+	</section>
+
+    <script>
+        const apiUrl = '/products/api/products/';
+
+        async function createProduct() {
+            const productName = document.getElementById('create-name').value;
+            const productPrice = document.getElementById('create-price').value;
+            const productDescription = document.getElementById('create-description').value;
+            const productCategory = document.getElementById('create-category').value;
+            const productStock = document.getElementById('create-stock').value;
+            const productImage = document.getElementById('create-image').files[0]; // Pour le fichier d'image
+            const productSeller = document.getElementById('create-seller').value;
+
+            const formData = new FormData();
+            formData.append('name', productName);
+            formData.append('price', productPrice);
+            formData.append('description', productDescription);
+            formData.append('category', productCategory);
+            formData.append('stock', productStock);
+            formData.append('image', productImage);
+            formData.append('seller', productSeller);
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+            console.log('Produit créé:', result);
+            alert('Produit créé avec succès');
+        }
+
+        async function updateProduct() {
+            const productId = document.getElementById('update-id').value;
+            const productName = document.getElementById('update-name').value;
+            const productPrice = document.getElementById('update-price').value;
+            const productDescription = document.getElementById('update-description').value;
+            const productCategory = document.getElementById('update-category').value;
+            const productStock = document.getElementById('update-stock').value;
+            const productImage = document.getElementById('update-image').files[0]; // Pour le fichier d'image
+
+            const formData = new FormData();
+            formData.append('name', productName);
+            formData.append('price', productPrice);
+            formData.append('description', productDescription);
+            formData.append('category', productCategory);
+            formData.append('stock', productStock);
+            if (productImage) {
+                formData.append('image', productImage);
+            }
+
+            const response = await fetch(`${apiUrl}/${productId}`, {
+                method: 'PUT',
+                body: formData,
+            });
+
+            const result = await response.json();
+            console.log('Produit modifié:', result);
+            alert('Produit modifié avec succès');
+        }
+
+        async function deleteProduct() {
+            const productId = document.getElementById('delete-id').value;
+
+            const response = await fetch(`${apiUrl}/${productId}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                console.log('Produit supprimé');
+                alert('Produit supprimé avec succès');
+            } else {
+                console.error('Erreur lors de la suppression du produit');
+                alert('Erreur lors de la suppression du produit');
+            }
+        }
+    </script>
+
+
+</body>
+</html>

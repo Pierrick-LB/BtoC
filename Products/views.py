@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Product
+from .serializers import ProductSerializer
 
 
 def shopDetails(request):
@@ -16,3 +19,11 @@ def checkoutPage(request):
 def notFound(request):
     return render(request, "Products/cart/404.html", locals())  
 
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+# class ProductList(generics.ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
